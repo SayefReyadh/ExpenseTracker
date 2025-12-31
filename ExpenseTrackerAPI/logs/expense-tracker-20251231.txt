@@ -1,0 +1,23 @@
+2025-12-31 12:55:01.525 +00:00 [ERR] Failed executing DbCommand (32ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-12-31 12:55:01.753 +00:00 [ERR] An error occurred while migrating the database
+System.InvalidOperationException: An error was generated for warning 'Microsoft.EntityFrameworkCore.Migrations.PendingModelChangesWarning': The model for context 'ApplicationDbContext' has pending changes. Add a new migration before updating the database. This exception can be suppressed or logged by passing event ID 'RelationalEventId.PendingModelChangesWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+   at Microsoft.EntityFrameworkCore.Diagnostics.EventDefinition`1.Log[TLoggerCategory](IDiagnosticsLogger`1 logger, TParam arg)
+   at Microsoft.EntityFrameworkCore.Diagnostics.RelationalLoggerExtensions.PendingModelChangesWarning(IDiagnosticsLogger`1 diagnostics, Type contextType)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.Migrate(String targetMigration)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Migrations.Internal.NpgsqlMigrator.Migrate(String targetMigration)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.Migrate(DatabaseFacade databaseFacade)
+   at Program.<Main>$(String[] args) in /app/Program.cs:line 129
+2025-12-31 12:55:01.779 +00:00 [INF] Starting Expense Tracker API
+2025-12-31 12:55:01.800 +00:00 [WRN] Storing keys in a directory '/root/.aspnet/DataProtection-Keys' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed. For more information go to https://aka.ms/aspnet/dataprotectionwarning
+2025-12-31 12:55:01.800 +00:00 [INF] User profile is available. Using '/root/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-12-31 12:55:01.826 +00:00 [INF] Creating key {eb011f03-bd05-4f16-b179-fecad8e61d58} with creation date 2025-12-31 12:55:01Z, activation date 2025-12-31 12:55:01Z, and expiration date 2026-03-31 12:55:01Z.
+2025-12-31 12:55:01.837 +00:00 [WRN] No XML encryptor configured. Key {eb011f03-bd05-4f16-b179-fecad8e61d58} may be persisted to storage in unencrypted form.
+2025-12-31 12:55:01.846 +00:00 [INF] Writing data to file '/root/.aspnet/DataProtection-Keys/key-eb011f03-bd05-4f16-b179-fecad8e61d58.xml'.
+2025-12-31 12:55:01.858 +00:00 [WRN] Overriding HTTP_PORTS '8080' and HTTPS_PORTS ''. Binding to values defined by URLS instead 'http://0.0.0.0:8080'.
+2025-12-31 12:55:01.924 +00:00 [INF] Now listening on: http://0.0.0.0:8080
+2025-12-31 12:55:01.924 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-31 12:55:01.925 +00:00 [INF] Hosting environment: Development
+2025-12-31 12:55:01.927 +00:00 [INF] Content root path: /app

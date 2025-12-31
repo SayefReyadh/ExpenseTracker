@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ./ExpenseTrackerAPI
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__DefaultConnection=Host=db;Database=expensetracker;Username=postgres;Password=postgres123
+      - JwtSettings__Secret=your-super-secret-key-change-in-production-min-32-chars
+      - JwtSettings__Issuer=ExpenseTrackerAPI
+      - JwtSettings__Audience=ExpenseTrackerClient
+      - JwtSettings__ExpiryInMinutes=60
+      - AWS__Region=us-east-1
+      - AWS__BucketName=expensetracker-receipts
+    volumes:
+      - ./ExpenseTrackerAPI:/app
+      - /app/bin
+      - /app/obj
+    depends_on:
+      - db
+    networks:
+      - expensetracker-network
+
+  db:
+    image: postgres:16
+    container_name: expensetracker-db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=expensetracker
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres123
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - expensetracker-network
+
+  adminer:
+    image: adminer
+    container_name: expensetracker-adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - expensetracker-network
+
+volumes:
+  postgres_data:
+
+networks:
+  expensetracker-network:
+    driver: bridge
